@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <img src="https://www.pngitem.com/pimgs/m/232-2324720_ratatouille-png-transparent-ratatouille-clipart-png-download.png" alt="Descrição da imagem" style="wight: 30px; height:30px">
+      La Receita
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list class="receitas">
+    <ion-item *ngFor="let receita of receitas">
+      <div *ngIf="receita.image; else semFoto">
+        <img src="{{ receita.image }}" alt="">
+      </div>
+      <ng-template #semFoto>
+        <img src="https://www.pngitem.com/pimgs/m/232-2324720_ratatouille-png-transparent-ratatouille-clipart-png-download.png" alt="">
+      </ng-template>
+      <h1>{{ receita.nome }}</h1>
+      <img *ngIf="receita.tipo === 1" class="icon" src="https://cdn-icons-png.flaticon.com/512/3038/3038413.png" alt="">
+      <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2933/2933110.png" alt="">
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="home"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
