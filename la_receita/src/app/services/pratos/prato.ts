@@ -1,6 +1,6 @@
 export class Receita{
     private _nome: string;
-    private _ingediente: string[];
+    private _ingrediente: string[];
     private _preparo!: string;
     private _criador!: string;
     private _historia!: string;
@@ -9,7 +9,7 @@ export class Receita{
    
     constructor(nome: string, ingrediente: string[], preparo: string){
      this._nome = nome;
-      this._ingediente = ingrediente;
+      this._ingrediente = ingrediente;
      this._preparo = preparo;
     }
     
@@ -46,11 +46,11 @@ export class Receita{
     }
 
     //ingredientes
-    public get ingediente(): string[] {
-        return this._ingediente;
+    public get ingrediente(): string[] {
+        return this._ingrediente;
     }
-    public set ingediente(ingediente: string[]) {
-        this._ingediente = ingediente;
+    public set ingrediente(ingrediente: string[]) {
+        this._ingrediente = ingrediente;
     }
 
     //tipo

@@ -9,6 +9,8 @@ export class CadastrarService {
 
   constructor() {
     let c1 : Receita = new Receita('Pão com mateiga', ['pão', 'manteiga'] ,'Pegue o pão e passe manteiga nele');
+    c1.tipo = 0
+    c1.image = "https://media-cdn.tripadvisor.com/media/photo-s/09/fe/4e/47/pao-com-manteiga-na-chapa.jpg"
     this.listaDeReceitas.push(c1);
    }
 
