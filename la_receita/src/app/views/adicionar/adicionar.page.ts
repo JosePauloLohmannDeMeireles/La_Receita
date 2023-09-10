@@ -11,13 +11,14 @@ import { Receita } from 'src/app/services/pratos/prato';
 })
 export class AdicionarPage implements OnInit {
   public nome! : string;
-  public ingrediente! : string[];
   public preparo! : string;
   public criador! : string;
   public historia!: string;
   public tipo!: number;
   public image!: any;
-
+  novoIngrediente: string = '';
+  ingredientes: string[] = [];
+  
   constructor(private alertController: AlertController,
     private router : Router, private cadastrarService : CadastrarService) { }
 
@@ -25,8 +26,8 @@ export class AdicionarPage implements OnInit {
   }
 
   cadastrar(){
-    if(this.nome && this.ingrediente && this.preparo){
-      let novaReceita : Receita = new Receita(this.nome, this.ingrediente, this.preparo);
+    if(this.nome && this.ingredientes && this.preparo){
+      let novaReceita : Receita = new Receita(this.nome, this.ingredientes, this.preparo);
       novaReceita.criador = this.criador;
       novaReceita.historia = this.historia;
       novaReceita.tipo = this.tipo;
@@ -60,4 +61,15 @@ export class AdicionarPage implements OnInit {
     }
   }
 
+
+  adicionarIngrediente() {
+    if (this.novoIngrediente.trim() !== '') {
+      this.ingredientes.push(this.novoIngrediente);
+      this.novoIngrediente = ''; // Limpa o campo de entrada
+    }
+  }
+
+  removerIngrediente(index: number) {
+    this.ingredientes.splice(index, 1);
+  }
 }

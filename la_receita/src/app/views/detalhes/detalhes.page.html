@@ -8,11 +8,25 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detalhes</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1>{{receitas[index].nome}}</h1>
+  <div *ngIf="receitas[index].image;">
+    <img src="{{ receitas[index].image }}" alt="">
+  </div>
+  <h2>Ingredientes:</h2>
+  <div *ngFor="let ingred of receitas[index].ingrediente; let i = index">
+    <p>{{i+1}}.{{ingred}}</p>
+  </div>
+  <h2>Mode de preparo:</h2>
+  <p>{{receitas[index].preparo}}</p>
+
+  <div *ngIf="receitas[index].historia;">
+    <h2>Historia da receita:</h2>
+    {{receitas[index].historia}}
+  </div>
+  <div *ngIf="receitas[index].criador;">
+    <h3>Criador:</h3>
+    {{receitas[index].criador}}
+  </div>
 </ion-content>
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">
   <ion-fab-button>

@@ -14,7 +14,8 @@ export class HomePage {
 
 
   constructor(private alertController: AlertController,
-    private router : Router, private cadastrarService : CadastrarService) {
+    private router : Router, 
+    private cadastrarService : CadastrarService) {
       this.receitas = this.cadastrarService.obterTodos();
     }
 

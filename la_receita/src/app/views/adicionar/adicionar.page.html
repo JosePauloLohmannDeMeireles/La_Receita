@@ -12,14 +12,19 @@
     <ion-item>
       <ion-input label="Nome" placeholder="Insira o nome" [(ngModel)]="nome"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-input label="ingredientes" placeholder="Insira o igrediente" [(ngModel)]="ingrediente"></ion-input>
+    <ion-item *ngFor="let ingrediente of ingredientes; let i = index">
+      {{ ingrediente }}
+      <ion-button (click)="removerIngrediente(i)">Remover</ion-button>
     </ion-item>
     <ion-item>
-      <ion-input label="preparo" placeholder="descreva o preparo" [(ngModel)]="preparo"></ion-input>
+      <ion-input label="ingrediente" placeholder="Insira o igrediente" [(ngModel)]="novoIngrediente"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="adicionarIngrediente()">Adicionar Ingrediente</ion-button>
+    <ion-item>
+      <ion-textarea type="textarea" label="preparo" placeholder="descreva o preparo" [(ngModel)]="preparo"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-input label="historia" placeholder="conte um pouco a historia da receita" [(ngModel)]="historia"></ion-input>
+      <ion-textarea label="historia" placeholder="conte um pouco a historia da receita" [(ngModel)]="historia"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-input label="criador" placeholder="nome de quem criou areceita" [(ngModel)]="criador"></ion-input>
