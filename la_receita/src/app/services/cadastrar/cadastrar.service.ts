@@ -21,4 +21,16 @@ export class CadastrarService {
    obterTodos() : Receita[]{
     return this.listaDeReceitas;
    }
+
+   deletar(indice : number){
+    this.listaDeReceitas.splice(indice, 1);
+   }
+
+   atualizar(indice : number, novo : Receita){
+    this.listaDeReceitas[indice] = novo;
+   }
+
+   obterPorIndice(indice : number) : Receita{
+    return this.listaDeReceitas[indice];
+   }
   }

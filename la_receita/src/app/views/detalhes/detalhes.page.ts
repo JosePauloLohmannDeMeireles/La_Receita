@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Receita } from 'src/app/services/pratos/prato';
 import { CadastrarService } from 'src/app/services/cadastrar/cadastrar.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-detalhes',
@@ -10,19 +10,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalhesPage implements OnInit {
   public receitas : Receita[] = [];
-  index: number = -1;
+  index!: number;
 
   constructor( private cadastrarService : CadastrarService,
-    private route: ActivatedRoute) { 
+    private routeAct: ActivatedRoute,
+    private router: Router) { 
     this.receitas = this.cadastrarService.obterTodos();
-    this.route.paramMap.subscribe(params => {
+    this.routeAct.paramMap.subscribe(params => {
       const index = params.get('index');
       console.log('Índice recebido na página de detalhes:', index);
     });
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.routeAct.paramMap.subscribe(params => {
       const indexParam = params.get('index');
       if (indexParam !== null) {
         this.index = +indexParam;
@@ -30,4 +31,8 @@ export class DetalhesPage implements OnInit {
     });
   }
 
+  excluir(){
+    this.cadastrarService.deletar(this.index);
+    this.router.navigate(["/home"]);
+  }
 }

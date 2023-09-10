@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'adicionar',
     loadChildren: () => import('./views/adicionar/adicionar.module').then( m => m.AdicionarPageModule)
   },
+  {
+    path: 'editar/:index',
+    loadChildren: () => import('./views/editar/editar.module').then( m => m.EditarPageModule)
+  },
 ];
 
 @NgModule({

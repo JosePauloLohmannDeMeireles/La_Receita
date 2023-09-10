@@ -1,4 +1,7 @@
 export class Receita{
+    subscribe(arg0: (receita: any) => void) {
+      throw new Error('Method not implemented.');
+    }
     private _nome: string;
     private _ingrediente: string[];
     private _preparo!: string;

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { CadastrarService } from 'src/app/services/cadastrar/cadastrar.service';
 import { Receita } from 'src/app/services/pratos/prato';
 
 @Component({
-  selector: 'app-adicionar',
-  templateUrl: './adicionar.page.html',
-  styleUrls: ['./adicionar.page.scss'],
+  selector: 'app-editar',
+  templateUrl: './editar.page.html',
+  styleUrls: ['./editar.page.scss'],
 })
-export class AdicionarPage implements OnInit {
+export class EditarPage implements OnInit {
   public nome! : string;
   public preparo! : string;
   public criador! : string;
@@ -18,14 +18,37 @@ export class AdicionarPage implements OnInit {
   public image!: any;
   novoIngrediente: string = '';
   ingredientes: string[] = [];
+  index!: number;
+  receita!: Receita;
   
   constructor(private alertController: AlertController,
-    private router : Router, private cadastrarService : CadastrarService) { }
+    private router : Router, private cadastrarService : CadastrarService,
+    private routeAct : ActivatedRoute) {
+      this.routeAct.paramMap.subscribe(params => {
+        const index = params.get('index');
+        console.log('Índice recebido na página de detalhes:', index);
+      });
+     }
 
   ngOnInit() {
+    this.routeAct.paramMap.subscribe(params => {
+      const indexParam = params.get('index');
+      if (indexParam !== null) {
+        this.index = +indexParam;
+      }
+    });
+
+    this.receita = this.cadastrarService.obterPorIndice(this.index);
+    this.nome = this.receita.nome;
+    this.preparo = this.receita.preparo;
+    this.criador = this.receita.criador;
+    this.historia = this.receita.historia;
+    this.tipo = this.receita.tipo;
+    this.image = this.receita.image;
+    this.ingredientes = this.receita.ingrediente;
   }
 
-  cadastrar(){
+  editar(){
     if(this.nome && this.ingredientes && this.preparo){
       let novaReceita : Receita = new Receita(this.nome, this.ingredientes, this.preparo);
       novaReceita.criador = this.criador;
@@ -71,5 +94,10 @@ export class AdicionarPage implements OnInit {
 
   removerIngrediente(index: number) {
     this.ingredientes.splice(index, 1);
+  }
+
+  excluir(){
+    this.cadastrarService.deletar(this.index);
+    this.router.navigate(["/home"]);
   }
 }
