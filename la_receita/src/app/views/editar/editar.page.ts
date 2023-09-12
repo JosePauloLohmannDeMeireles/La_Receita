@@ -88,7 +88,7 @@ export class EditarPage implements OnInit {
   adicionarIngrediente() {
     if (this.novoIngrediente.trim() !== '') {
       this.ingredientes.push(this.novoIngrediente);
-      this.novoIngrediente = ''; // Limpa o campo de entrada
+      this.novoIngrediente = '';
     }
   }
 
