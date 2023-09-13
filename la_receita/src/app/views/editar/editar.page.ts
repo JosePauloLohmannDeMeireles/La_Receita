@@ -55,7 +55,8 @@ export class EditarPage implements OnInit {
       novaReceita.historia = this.historia;
       novaReceita.tipo = this.tipo;
       novaReceita.image = this.image;
-      this.cadastrarService.cadastrar(novaReceita);
+      novaReceita.id = this.index;
+      this.cadastrarService.atualizar(this.index ,novaReceita);
       this.router.navigate(["/home"]);
     }else{
       this.presentAlert("Erro de cadastro", "Campos não preenchidos corretamente!");
@@ -96,8 +97,4 @@ export class EditarPage implements OnInit {
     this.ingredientes.splice(index, 1);
   }
 
-  excluir(){
-    this.cadastrarService.deletar(this.index);
-    this.router.navigate(["/home"]);
-  }
 }

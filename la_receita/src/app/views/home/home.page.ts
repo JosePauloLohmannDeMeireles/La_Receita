@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
   public receitas : Receita[] = [];
-
+  receitasFiltradas: Receita[] = [];
 
   constructor(private alertController: AlertController,
     private router : Router, 
@@ -19,4 +19,21 @@ export class HomePage {
       this.receitas = this.cadastrarService.obterTodos();
     }
 
+
+    ionViewWillEnter() {
+      this.receitasFiltradas = [...this.receitas];
+    }
+  
+    filtrarReceitas(event: any) {
+      const nome: string = event.target.value || '';
+  
+      if (nome.trim() === '') {
+  
+        this.receitasFiltradas = [...this.receitas];
+      } else {
+        this.receitasFiltradas = this.receitas.filter((receita) =>
+          receita.nome.toLowerCase().includes(nome.toLowerCase())
+        );
+      }
+    }
 }

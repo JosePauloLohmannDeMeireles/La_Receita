@@ -8,8 +8,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list class="receitas" *ngFor="let receita of receitas;  let i = index">
-    <ion-item [routerLink]="['/detalhes', i]">
+  <ion-searchbar (ionInput)="filtrarReceitas($event)"></ion-searchbar>
+  <ion-list class="receitas" *ngFor="let receita of receitasFiltradas;">
+    <ion-item [routerLink]="['/detalhes', receita.id]">
       <div *ngIf="receita.image; else semFoto">
         <img src="{{ receita.image }}" alt="">
       </div>

@@ -9,6 +9,7 @@ export class Receita{
     private _historia!: string;
     private _tipo!: number;
     private _image!: string;
+    private _id!: number;
    
     constructor(nome: string, ingrediente: string[], preparo: string){
      this._nome = nome;
@@ -22,6 +23,14 @@ export class Receita{
     }
     public set nome(nome: string){
      this._nome = nome;
+    }
+
+    //id
+    public get id(): number {
+        return this._id;
+    }
+    public set id(id: number) {
+        this._id = id;
     }
 
     //criador

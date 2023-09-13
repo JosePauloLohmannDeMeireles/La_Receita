@@ -18,9 +18,12 @@ export class AdicionarPage implements OnInit {
   public image!: any;
   novoIngrediente: string = '';
   ingredientes: string[] = [];
+  cont!: number;
   
   constructor(private alertController: AlertController,
-    private router : Router, private cadastrarService : CadastrarService) { }
+    private router : Router, private cadastrarService : CadastrarService) { 
+      this.cont = cadastrarService.cont
+    }
 
   ngOnInit() {
   }
@@ -32,6 +35,7 @@ export class AdicionarPage implements OnInit {
       novaReceita.historia = this.historia;
       novaReceita.tipo = this.tipo;
       novaReceita.image = this.image;
+      novaReceita.id = this.cont;
       this.cadastrarService.cadastrar(novaReceita);
       this.router.navigate(["/home"]);
     }else{
